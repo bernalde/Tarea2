@@ -1,0 +1,62 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include <string.h>
+#define USAGE "./3D_randomwalk.out Nsteps Nwalks"
+
+
+double make_walk(int nsteps);
+
+int main(int argc, char **argv){
+
+  if(argc!=3){
+    printf("USAGE: %s\n", USAGE);
+    exit(1);
+  }
+
+  int semilla;
+  int nwalks;
+  int nsteps;
+  int i,j;
+  double value=0.0;
+  double sumap=0.0;
+  double D;
+
+
+  semilla=atoi(argv[1]);
+  srand48(semilla);
+
+  nsteps=atoi(argv[1]);
+  nwalks=atoi(argv[2]);
+  for(i=0;i<nwalks;i++){
+     value=make_walk(nsteps);
+     sumap=sumap+value;
+  }
+  D=sumap/nwalks;
+
+  printf("%f\n %d\n",D,nsteps);
+
+  return 0;
+}
+
+
+double make_walk(int nsteps){
+  double x0,y0,z0,norma;
+  double dist=0.0;
+  double xi=0;
+  double yi=0;
+  double zi=0;
+  int i=0;
+  while(i<nsteps){
+    x0=2*(drand48()-0.5);
+    y0=2*(drand48()-0.5);
+    z0=2*(drand48()-0.5);
+    norma=sqrt(x0*x0+y0*y0+z0*z0);
+    xi=xi+x0/norma;
+    yi=yi+y0/norma;
+    zi=zi+z0/norma;
+    dist=sqrt(xi*xi+yi*yi+zi*zi);
+    i=i+1;
+  }
+  return dist;
+}
