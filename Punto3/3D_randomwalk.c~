@@ -45,7 +45,7 @@ int main(int argc, char **argv){
   for(i=0;i<nwalks;i++){
      sumad=sumad+(value[i]-D)*(value[i]-D);
   }
-  Desv=sqrt(sumad/(double(nwalks)-1));
+  Desv=sqrt(sumad/(nwalks-1.0));
 
   printf("%.10lf\n%.10lf\n",D,Desv);
 

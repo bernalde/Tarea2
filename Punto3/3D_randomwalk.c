@@ -14,7 +14,9 @@ int main(int argc, char **argv){
     exit(1);
   }
 
-  int semilla;
+  long semilla;
+  int semilla1;
+  int semilla2;
   int nwalks;
   int nsteps;
   int i;
@@ -24,7 +26,9 @@ int main(int argc, char **argv){
   double Desv;
 
 
-  semilla=time(NULL);
+  semilla1=time(NULL);
+  semilla2=rand();
+  semilla=(semilla1+semilla2);
   srand48(semilla);
 
   nsteps=atoi(argv[1]);
